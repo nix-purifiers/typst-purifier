@@ -1,0 +1,7 @@
+result*
+cli
+.typst-purifier/
+__pycache__/
+*.pyc
+*.log
+native-editor

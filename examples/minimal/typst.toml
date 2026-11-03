@@ -1,0 +1,7 @@
+[package]
+name = "purifier-proof"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["the nix-purifier developers"]
+license = "MIT"
+description = "Native locked Typst dependency proof"

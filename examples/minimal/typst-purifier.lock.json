@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "purifier": "typst",
+  "sdk": "9dfa88039dc2ac4335e7af06a30a1f929f557385bbc9b61a7de7aa91de619fcb",
+  "document": "main.typ",
+  "defines": [],
+  "package": {
+    "name": "purifier-proof",
+    "version": "0.1.0",
+    "entrypoint": "lib.typ"
+  },
+  "extraInputs": [],
+  "inputs": {
+    "typst.toml": {
+      "content": "[package]\nname = \"purifier-proof\"\nversion = \"0.1.0\"\nentrypoint = \"lib.typ\"\nauthors = [\"the nix-purifier developers\"]\nlicense = \"MIT\"\ndescription = \"Native locked Typst dependency proof\"\n",
+      "sha256": "623b362518c63a72fe0f9f223ced8bbbca5cc994c1b2b98b12344f26aa63d41f"
+    }
+  },
+  "entries": [
+    {
+      "path": "archives/cetz/0.5.2.tar.gz",
+      "url": "https://packages.typst.org/preview/cetz-0.5.2.tar.gz",
+      "hash": "sha256-d8+EkBFK4ExuZloR76aR0oSgytuXGXcbVwjBGXKS8j8=",
+      "mirrors": []
+    },
+    {
+      "path": "archives/oxifmt/1.0.0.tar.gz",
+      "url": "https://packages.typst.org/preview/oxifmt-1.0.0.tar.gz",
+      "hash": "sha256-fReh/IrQF0DsPLKwPHNgpCJf+TGOVxB2X6mOpv1ZWU8=",
+      "mirrors": []
+    }
+  ],
+  "nodes": [
+    {
+      "name": "cetz",
+      "namespace": "preview",
+      "url": "https://packages.typst.org/preview/cetz-0.5.2.tar.gz",
+      "version": "0.5.2",
+      "entrypoint": "src/lib.typ",
+      "entry": "archives/cetz/0.5.2.tar.gz"
+    },
+    {
+      "name": "oxifmt",
+      "namespace": "preview",
+      "url": "https://packages.typst.org/preview/oxifmt-1.0.0.tar.gz",
+      "version": "1.0.0",
+      "entrypoint": "lib.typ",
+      "entry": "archives/oxifmt/1.0.0.tar.gz"
+    }
+  ]
+}
