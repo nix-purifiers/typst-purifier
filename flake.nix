@@ -65,6 +65,10 @@
         {
           inherit (build.packages) environment project;
           release = build.release;
+          resources = import ./tests/resource-consumer.nix {
+            pkgs = pkgs;
+            projection = build.projections.resources;
+          };
           cli = self.packages.${system}.default;
         }
       );

@@ -92,6 +92,15 @@ It exposes evaluation-known `packages`, `tests`, `release` and `fetches`.
 contains the PDF and compiler dependency report. Override `typstFlags`,
 `nativeBuildInputs` or `checkCommand` for project requirements.
 
+## Resource projections
+
+The build result and `packages.project` expose `projections.resources`,
+`projections.web`, and `projections.java-resources`. These contain only the
+compiled `document.pdf`; the compiler dependency report and source files are
+excluded. Use `.documentRoot` for HTTP serving or `.classPath` as a Java
+resource JAR containing `/document.pdf`. The consumer check retrieves the PDF
+through ordinary HTTP and Java resource loading and checks its byte digest.
+
 ## Credits
 
 The purifier idea was inspired by nixcloud's
