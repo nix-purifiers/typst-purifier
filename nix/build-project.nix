@@ -41,7 +41,7 @@ let
       d
     ]) lock.data.defines
     ++ typstFlags;
-  project =
+  builtProject =
     runCommand "typst-project"
       {
         nativeBuildInputs = [
@@ -62,6 +62,14 @@ let
         typst compile --ignore-system-fonts ${lib.escapeShellArgs flags} --deps "$out/dependencies.json" ${lib.escapeShellArg lock.data.document} "$out/document.pdf"
         ${lib.optionalString doCheck checkCommand}
       '';
+  projections = purifier.resourceProjections {
+    producer = builtProject;
+    roots."document.pdf" = "document.pdf";
+    inherit runCommand python3;
+  };
+  project = builtProject // {
+    inherit projections;
+  };
   release =
     runCommand "typst-native-release"
       {
@@ -90,6 +98,6 @@ assert lock.problems == [ ];
     inherit environment project;
   };
   tests = project;
-  inherit release;
+  inherit release projections;
   fetches = lock.entries;
 }
