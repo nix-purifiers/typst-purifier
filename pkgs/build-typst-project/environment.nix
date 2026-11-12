@@ -45,6 +45,6 @@ runCommand "typst-locked-packages"
     + lib.concatMapStringsSep "\n" (node: ''
       mkdir -p "$out/${node.namespace}/${node.name}/${node.version}"
       tar -xzf ${tree}/${node.entry} -C "$out/${node.namespace}/${node.name}/${node.version}"
-      python3 ${../typst_purifier/check-package.py} ${writeText "typst-package.json" (builtins.toJSON node)} "$out/${node.namespace}/${node.name}/${node.version}"
+      python3 ${../../typst_purifier/check-package.py} ${writeText "typst-package.json" (builtins.toJSON node)} "$out/${node.namespace}/${node.name}/${node.version}"
     '') checked.data.nodes
   )

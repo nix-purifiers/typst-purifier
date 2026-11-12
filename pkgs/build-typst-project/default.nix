@@ -20,7 +20,7 @@
   checkCommand ? "",
 }:
 let
-  lock = purifier.checkLock (import ./read-lock.nix { inherit lib; } { inherit src lockFile; });
+  lock = purifier.checkLock (import ../../lib-overlays/default/read-lock.nix { inherit lib; } { inherit src lockFile; });
   environment = import ./environment.nix (builtins.removeAttrs scope [ "nativeTypst" ]) {
     inherit lock fetchers;
   };
@@ -86,7 +86,7 @@ let
           mkdir stage
           cp -pr ${source}/. stage/
           chmod -R u+w stage
-          python3 ${../typst_purifier/check-package.py} ${writeText "typst-project-package.json" (builtins.toJSON lock.data.package)} "$PWD/stage"
+          python3 ${../../typst_purifier/check-package.py} ${writeText "typst-project-package.json" (builtins.toJSON lock.data.package)} "$PWD/stage"
           tar --sort=name --mtime=@1 --owner=0 --group=0 --numeric-owner -czf "$out/${lock.data.package.name}-${lock.data.package.version}.tar.gz" -C stage .
         ''}
       '';

@@ -22,11 +22,11 @@
           nativeTypst = scope.callPackage ./nix/native.nix { };
           nativeTinymist = scope.callPackage ./nix/editor.nix { };
           sdkVersion = import ./nix/sdk-version.nix { nixpkgsSrc = nixpkgs; };
-          cli = scope.callPackage ./nix/cli.nix {
+          cli = scope.callPackage ./pkgs/typst-purifier/default.nix {
             nixpkgsSrc = nixpkgs;
             purifierSrc = purifier;
           };
-          buildTypstProject = scope.callPackage ./nix/build-project.nix {
+          buildTypstProject = scope.callPackage ./pkgs/build-typst-project/default.nix {
             purifier = import (purifier + "/nix/lib") { inherit (final) lib; };
           };
         });
@@ -51,7 +51,7 @@
           meta.description = "Lock native Typst packages";
         };
       });
-      lib.typst-purifier.readLock = import ./nix/read-lock.nix { lib = nixpkgs.lib; };
+      lib.typst-purifier = import ./lib-overlays/default { lib = nixpkgs.lib; };
       checks = forAll (
         system:
         let
