@@ -11,7 +11,7 @@ let
   purifier = import (/. + "@purifier@/nix/lib") { inherit (pkgs) lib; };
   nativeTypst = pkgs.callPackage ./native.nix { };
   sdkVersion = import ./sdk-version.nix { inherit nixpkgsSrc; };
-  build = pkgs.callPackage ./build-project.nix { inherit purifier nativeTypst sdkVersion; } {
+  build = pkgs.callPackage ../pkgs/build-typst-project/default.nix { inherit purifier nativeTypst sdkVersion; } {
     src = /. + project;
     lockFile = /. + companion;
   };

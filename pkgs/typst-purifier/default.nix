@@ -17,12 +17,12 @@
 stdenvNoCC.mkDerivation {
   pname = "typst-purifier";
   version = "0.1.0";
-  src = ../.;
+  src = ../..;
   nativeBuildInputs = [ makeWrapper ];
   dontBuild = true;
   installPhase = ''
     mkdir -p "$out/bin" "$out/lib/typst-purifier"
-    cp -r typst_purifier nix "$out/lib/typst-purifier/"
+    cp -r typst_purifier nix lib-overlays pkgs "$out/lib/typst-purifier/"
     install -m755 bin/typst-purifier "$out/bin/typst-purifier"
     substituteInPlace "$out/lib/typst-purifier/nix/realize.nix" --replace-fail '@nixpkgs@' '${nixpkgsSrc}' --replace-fail '@purifier@' '${purifierSrc}'
     wrapProgram "$out/bin/typst-purifier" \
